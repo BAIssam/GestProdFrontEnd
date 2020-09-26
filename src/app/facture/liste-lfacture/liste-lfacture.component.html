@@ -1,0 +1,42 @@
+<table class="table table-hover">
+	<thead class="thead-light">
+		<th>Code Article</th>
+		<th>Libelle</th>
+		<th>Quantit&eacute;</th>
+		<th>PU</th>
+		<th>TVA</th>
+		<th>Remise</th>
+		<th>Total Ht</th>
+		<th>Total Tva</th>
+		<th>Total TTC</th>
+	</thead>
+	<tbody>
+		<tr *ngFor="let lFact of lFactureListe">
+			<td class="hidden">{{lFact.id}}</td>			
+			<td>{{lFact.code}}</td>			
+			<td>{{lFact.libelle}}</td>
+			<td>{{lFact.qte}}</td>
+			<td>{{lFact.pv}}</td>
+			<td>{{lFact.tva}}</td>			
+			<td>{{lFact.remise}}</td>
+			<td>{{lFact.totht}}</td>
+			<td>{{lFact.tottva}}</td>
+			<td>{{lFact.totttc}}</td>			
+		</tr>
+		<div class="row">
+			<div class="col-sm-12 col-md-5">
+				<div class="dataTables_info" id="dataTable_info" role="status"
+					aria-live="polite"></div>
+			</div>
+			<div class="col-sm-12 col-md-7">
+				<div class="dataTables_paginate paging_simple_numbers"
+					id="dataTable_paginate">
+					<ul class="pagination"></ul>
+				</div>
+			</div>
+		</div>
+	</tbody>
+</table>
+<div class="form-group">
+	<button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Quitter</button>
+</div>

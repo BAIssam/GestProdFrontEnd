@@ -1,0 +1,60 @@
+<div id="toolbar">
+	<div class="background">
+		<h3>Liste des articles</h3>
+	</div>
+</div>
+<div class="pricing-header mx-auto">
+	<div class="table-responsive">
+		<table
+			class="table table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Code</th>
+					<th scope="col">Libelle</th>
+					<th scope="col">Prix Achat</th>
+					<th scope="col">Prix Vente</th>
+					<th scope="col">Remise</th>
+					<th scope="col">Stock Initial</th>
+					<th scope="col">Stock</th>
+					<th scope="col">TVA</th>
+					<th colspan="2" align="center"><a
+						class="btn btn-outline-success" (click)="newArticle()"><i
+							class="fa fa-plus-square"></i>Nouveau</a></th>
+				</tr>
+			</thead>
+			<tbody>
+
+
+				<tr *ngFor="let item of articleService.listData | paginate: { id: 'listing_pagination',
+                                                      itemsPerPage: 10,
+                                                      currentPage: page,
+                                                      totalItems: totalRecords }">
+					<th class="hidden">{{item.id}}</th>
+					<td>{{item.code}}</td>
+					<td>{{item.libelle}}</td>
+					<td>{{item.pa}}</td>
+					<td>{{item.pv}}</td>
+					<td>{{item.remise}}</td>
+					<td>{{item.stkinit}}</td>
+					<td>{{item.stock}}</td>
+					<td>{{item.tva}}</td>
+
+					<td><a class="btn btn-sm btn-info text-white"
+							(click)="selectData(item)">
+							<i class="fa fa-pencil fa-lg"></i>
+						</a>
+						<a class="btn btn-sm btn-danger text-white ml-1"
+							(click)="removeData(item.id)">
+							<i class="fa fa-trash-o"></i>
+						</a>
+					</td>
+				</tr>				
+			</tbody>
+		</table>
+		<div class="row center">
+			<div class="col-sm-12">
+				<pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+			</div>
+		</div>		
+	</div>
+</div>

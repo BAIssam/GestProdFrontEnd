@@ -1,0 +1,55 @@
+<div id="toolbar">
+	<div class="background">
+		<h3>Liste des commandes</h3>
+	</div>
+</div>
+
+<table class="table table-hover">
+	<thead class="thead-light">
+		<th>Numero</th>
+		<th>Date commande</th>
+		<th>Total Ht</th>
+		<th>Total Tva</th>
+		<th>Total TTC</th>
+		<th><a class="btn btn-outline-success" (click)="newComm()"><i
+				class="fa fa-plus-square"></i> Cr&eacute;er Commande</a></th>
+	</thead>
+	<tbody>
+		<tr *ngFor="let comm of commandeListe | paginate: { id: 'listing_pagination',
+                                                      itemsPerPage: 10,
+                                                      currentPage: page,
+                                                      totalItems: totalRecords }" (click)="getLignesCommande(comm.id)">
+			<td class="hidden">{{comm.id}}</td>
+			<td>{{comm.numCommande}}</td>
+			<td>{{comm.dateCommande| date:'dd/MM/yyyy'}}</td>			
+			<td>{{comm.totht}}</td>
+			<td>{{comm.tottva}}</td>
+			<td>{{comm.totttc}}</td>
+			<td>
+			<a class="btn btn-sm btn-info text-white" (click)="onSelect(comm)">
+				<i class="fa fa-pencil fa-lg"></i>
+			</a>
+			<a class="btn btn-sm btn-danger text-white ml-1" (click)="onDelete(comm.id, $event)">
+				<i class="fa fa-trash fa-lg"></i> 
+			</a> 			
+			</td>
+		</tr>
+		<div class="row">
+			<div class="col-sm-12 col-md-5">
+				<div class="dataTables_info" id="dataTable_info" role="status"
+					aria-live="polite"></div>
+			</div>
+			<div class="col-sm-12 col-md-7">
+				<div class="dataTables_paginate paging_simple_numbers"
+					id="dataTable_paginate">
+					<ul class="pagination"></ul>
+				</div>
+			</div>
+		</div>
+	</tbody>
+</table>
+<div class="row center">
+	<div class="col-md-12">
+		<pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+	</div>
+</div>

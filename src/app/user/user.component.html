@@ -1,20 +1,30 @@
-<h2>Liste des utilisateurs!</h2>
+<div id="toolbar">
+	<div class="background">
+		<h3>Liste des utilisateurs!</h3>
+	</div>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-lg-7">
       <table class="table table-hover">
-        <thead>
+        <thead class="thead-light">
           <th>Id</th><th>Utilisateur</th><th>Actif</th>
           <th>
-            <button type="button" class="btn btn-outline-primary" (click)="operation='ajouter' ; initUser();">Ajouter</button>
+            <a class="btn btn-outline-success" (click)="operation='ajouter' ; initUser();">
+            	<i class="fa fa-plus-square"></i>Ajouter
+			</a>
           </th>
         </thead>
         <tbody>
           <tr *ngFor="let u of users">
             <td>{{u.id}}</td><td>{{u.username}}</td><td>{{u.enable}}</td>
             <td>
-              <button type="button" class="btn btn-outline-primary" (click)="operation = 'modifier' ; selectedUser = u;">Modifier</button>
-              <button type="button" class="btn btn-outline-danger" (click)="operation = 'supprimer' ; selectedUser = u;">X</button>
+              <a class="btn btn-sm btn-info text-white" (click)="operation = 'modifier' ; selectedUser = u;">
+              	<i class="fa fa-pencil fa-lg"> </i>
+              </a>
+              <a class="btn btn-sm btn-danger text-white ml-1" (click)="operation = 'supprimer' ; selectedUser = u;">
+              	<i class="fa fa-trash fa-lg"> </i>
+              </a>
             </td>
           </tr>
         </tbody>
@@ -35,7 +45,7 @@
           <div *ngIf="operation == 'ajouter' || operation == 'modifier'">
             <form [formGroup]="userForm" class="" action="index.html" method="post">
               <div class="form-group">
-                <label>Nom d'utilisateur</label>
+                <label><strong>Nom d'utilisateur</strong></label>
                 <input type="text" class="form-control" formControlName="username" [(ngModel)]="selectedUser.username">
               </div>
               <div class="alert alert-danger" *ngIf="userForm.controls['username'].invalid &&
@@ -43,7 +53,7 @@
                 Le nom d'utilisateur est obligatoire
               </div>
               <div class="form-group">
-                <label>Activé:</label>
+                <label><strong>Activé:</strong></label>
                 <input type="text" class="form-control" formControlName="enable" [(ngModel)]="selectedUser.enable">
               </div>
               <button class="btn btn-success"

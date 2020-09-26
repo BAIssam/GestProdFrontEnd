@@ -1,0 +1,40 @@
+<table class="table table-hover">
+	<thead class="thead-light">
+		<th>Code Article</th>
+		<th>Libelle</th>
+		<th>Quantit&eacute;</th>
+		<th>PU</th>
+		<th>TVA</th>
+		<th>Total Ht</th>
+		<th>Total Tva</th>
+		<th>Total TTC</th>
+	</thead>
+	<tbody>
+		<tr *ngFor="let lComm of lCommandeListe">
+			<td class="hidden">{{lComm.id}}</td>			
+			<td>{{lComm.code_article}}</td>			
+			<td>{{lComm.libart}}</td>
+			<td>{{lComm.qte}}</td>
+			<td>{{lComm.pu}}</td>
+			<td>{{lComm.tva}}</td>
+			<td>{{lComm.totht}}</td>
+			<td>{{lComm.tottva}}</td>
+			<td>{{lComm.totttc}}</td>
+		</tr>
+		<div class="row">
+			<div class="col-sm-12 col-md-5">
+				<div class="dataTables_info" id="dataTable_info" role="status"
+					aria-live="polite"></div>
+			</div>
+			<div class="col-sm-12 col-md-7">
+				<div class="dataTables_paginate paging_simple_numbers"
+					id="dataTable_paginate">
+					<ul class="pagination"></ul>
+				</div>
+			</div>
+		</div>
+	</tbody>
+</table>
+<div class="form-group">
+	<button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Quitter</button>
+</div>

@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   constructor(private appService: AppService, private router:Router){}
 
-  //Executer automatiquement aprÃ¨s la crÃ©ation du composant
+  //Executer automatiquement après la création du composant
   ngOnInit(){
     if (!this.appService.authenticated){
       this.router.navigateByUrl('/login');

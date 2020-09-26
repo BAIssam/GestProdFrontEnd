@@ -1,0 +1,48 @@
+
+<div id="toolbar">
+	<div class="background">
+		<h3>Liste des factures</h3>
+	</div>
+</div>
+
+<table class="table table-hover">
+	<thead class="thead-light">
+		<th>Numero</th>
+		<th>Date facture</th>
+		<th>Total Ht</th>
+		<th>Total Tva</th>
+		<th>ToT Remise</th>
+		<th>Total TTC</th>
+		<th>Timbre</th>
+		<th><a class="btn btn-outline-success" (click)="newFacture()"><i
+				class="fa fa-plus-square"></i> Cr&eacute;er Facture</a></th>
+	</thead>
+	<tbody>
+		<tr *ngFor="let fact of factureListe | paginate: { id: 'listing_pagination',
+                                                      itemsPerPage: 10,
+                                                      currentPage: page,
+                                                      totalItems: totalRecords }" (click)="getLignesFacture(fact.id)">
+			<td class="hidden">{{fact.id}}</td>
+			<td >{{fact.numero}}</td>
+			<td >{{fact.dateFacture| date:'dd/MM/yyyy'}}</td>			
+			<td >{{fact.totht}}</td>
+			<td >{{fact.tottva}}</td>
+			<td >{{fact.totrem}}</td>
+			<td >{{fact.totttc}}</td>
+			<td >{{fact.timbre}}</td>
+			<td>
+				<a class="btn btn-sm btn-info text-white" (click)="onSelect(fact)">
+					<i class="fa fa-pencil fa-lg"> </i> 
+				</a>
+				<a class="btn btn-sm btn-danger text-white ml-1" (click)="onDelete(fact.id, $event)">
+					<i class="fa fa-trash fa-lg"> </i> 
+				</a>						
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div class="row center">
+	<div class="col-md-12">
+		<pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+	</div>
+</div>

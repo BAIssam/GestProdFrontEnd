@@ -47,7 +47,7 @@
                 <label>Prix Unitaire:</label>
                 <input type="number" class="form-control" formControlName="prixUnitaire" [(ngModel)] = "selectedProduit.prixUnitaire"/>
               </div>
-              <button class="btn btn-success" [disabled]="produitForm.prestine || produitForm.invalid"
+              <button class="btn btn-success" [disabled]="produitForm.invalid"
                 (click)="operation == 'ajouter' ? addProduit() : updateProduit()" >
                 {{operation == 'ajouter' ? 'Ajouter' : operation == 'modifier' ? 'Modifier' : ''}}
               </button>

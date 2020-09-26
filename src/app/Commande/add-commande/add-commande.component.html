@@ -1,0 +1,81 @@
+<div id="toolbar">
+<div class="background">
+	<h3>Gestion Commande</h3>
+</div>
+</div>
+<div class="contenu">
+<form [formGroup]="commService.formData" (ngSubmit)="onSubmit()">
+	<div class="form-group row col-md-12 formContenu">
+		<div class="form-group col-md-6">
+			<label><strong>Num Commande : </strong></label> <input type="text"
+				class="form-control" formControlName="numCommande" id="numCommande">
+		</div>
+		<div class="col-md-6 form-group">
+			<label><strong>Date</strong></label> <input type="date" class="form-control"
+				formControlName="dateCommande" id="dateCommande">
+		</div>
+	</div>
+	<table class="table table-borderless">
+		<thead class="thead-light">
+			<th>Code</th>
+			<th>Article</th>
+			<th>PU</th>
+			<th>Quantite</th>
+			<th>TVA (%)</th>
+			<th>Total HT</th>
+			<th>Total TTC</th>
+			<th><a class="btn btn-sm btn-success text-white"
+				(click)="AddData(null,1)"> <i class="fa fa-plus"></i>Ajouter
+			</a></th>
+		</thead>
+		<tbody>
+			<tr *ngIf="commService.listlignesCommande.length==0"
+				[class.text-danger]="!isValid && commService.listlignesCommande.length ==0">
+				<td class="font-italic text-center" colspan="5">Aucune Commande
+					s&eacute;lectionn&eacute;e ...</td>
+			</tr>
+			<tr *ngFor="let item of commService.listlignesCommande;let i=index;">
+				<td>{{item.code_article}}</td>
+				<td>{{item.libart}}</td>
+				<td>{{item.pu}}</td>
+				<td>{{item.qte}}</td>
+				<td>{{item.tva}}</td>
+				<td>{{item.totht}}</td>
+				<td>{{item.totttc}}</td>
+				<td><a class="btn btn-sm btn-info text-white"
+					(click)="AddData(i,1)"> <i class="fa fa-pencil"></i></a> <a
+					class="btn btn-sm btn-danger text-white ml-1"
+					(click)="onDelete(item,item.id,i)"> <i class="fa fa-trash"></i></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="form-group row">
+		<div class="col-sm-4 mb-3 mb-sm-0">
+			<div class="form-group">
+				<label><strong>Total Ht : </strong></label> <input type="text" class="form-control"
+					id="totht" formControlName="totht" readonly>
+			</div>
+		</div>
+		<div class="col-sm-4 mb-3 mb-sm-0">
+			<div class="form-group">
+				<label><strong>Total Tva : </strong></label> <input type="text" class="form-control"
+					id="tottva" formControlName="tottva" readonly>
+			</div>
+		</div>
+		<div class="col-sm-4 mb-3 mb-sm-0">
+			<div class="form-group">
+				<label><strong>Total TTC : </strong></label> <input type="text" class="form-control"
+					id="totttc" formControlName="totttc" readonly>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<button type="submit" class="btn btn-dark">
+			<i class="fa fa-database"></i> Enregistrer
+		</button>
+		<a class="btn btn-outline-dark ml-1" (click)="goToListeCommandes()"><i
+			class="fa fa-plus-square"></i> Liste </a>
+	</div>
+</form>
+</div>

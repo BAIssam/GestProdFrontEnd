@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { AppService } from '../app.service';
 
 @Component({
@@ -31,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.appService.authenticate(this.credentials, ()=>{
-      this.router.navigateByUrl('/home/(contentOutlet:produits)');
+      this.router.navigateByUrl('/home/(contentOutlet:addfactures)');
     });{
 
     }

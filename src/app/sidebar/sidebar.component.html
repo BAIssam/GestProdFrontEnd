@@ -1,13 +1,80 @@
-<nav class="hidden-xs-down bg-faded sidebar">
-  <ul class="nav nav-pills flex-column">
-    <li class="nav-item">
-      <a class="nav-link" href="#">Dashboard</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Produits</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Utilisateurs</a>
-    </li>
-  </ul>
-</nav>
+<div class="wrapper">
+	<nav id="sidebar">
+	  <div class="sidebar-header">
+	  	<h3>Magasin</h3>
+	  </div>
+	  <ul class="list-unstyled components">
+	    <li class="nav-item">
+	      <a class="nav-link"
+					[routerLink]="[{outlets: {contentOutlet: 'categories'}}]"
+					*ngIf="hasRoleUser()" routerLinkActive="active">Cat&eacute;gories</a>
+	    </li>
+	    
+	    <li>
+	       <a href="#articleSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Article</a>
+	       <ul class="collapse list-unstyled" id="articleSubmenu">
+			    <li class="nav-item">
+			      <a class="nav-link"
+							[routerLink]="[{outlets: {contentOutlet: 'articles'}}]"
+							*ngIf="hasRoleUser()" routerLinkActive="active" (click)="choixMenuCreerArticle()">Nouveau article</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link"
+							[routerLink]="[{outlets: {contentOutlet: 'listearticles'}}]"
+							*ngIf="hasRoleUser()" routerLinkActive="active">Liste des
+								articles</a>
+			    </li>
+			 </ul>
+		</li>    
+	    
+	    <li>
+	       <a href="#commandeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Commande</a>
+	       <ul class="collapse list-unstyled" id="commandeSubmenu">
+			    <li class="nav-item">
+	      		  <a class="nav-link"
+					[routerLink]="[{outlets: {contentOutlet: 'addcommandes'}}]"
+					*ngIf="hasRoleUser()" routerLinkActive="active" (click)="choixMenuCreerCommande()">Cr&eacute;er commande</a>
+	    	    </li>
+			    <li class="nav-item">
+			      <a class="nav-link"
+							[routerLink]="[{outlets: {contentOutlet: 'listecommandes'}}]"
+							*ngIf="hasRoleUser()" routerLinkActive="active">Liste des
+								commandes</a>
+			    </li>
+			</ul>
+		</li>
+		
+		<li class="active">
+	       <a href="#factureSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Facture</a>
+	       <ul class="collapse list-unstyled" id="factureSubmenu">
+			    <li class="nav-item">
+			      <a class="nav-link"
+							[routerLink]="[{outlets: {contentOutlet: 'addfactures'}}]"
+							*ngIf="hasRoleUser()" routerLinkActive="active"
+							(click)="choixMenuCreerFacture()">Cr&eacute;er Facture</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link"
+							[routerLink]="[{outlets: {contentOutlet: 'listefactures'}}]"
+							*ngIf="hasRoleUser()" routerLinkActive="active">Liste des
+								Factures</a>
+			    </li>
+			</ul>
+		</li>
+		
+	    <li class="nav-item">
+	      <a class="nav-link"
+					[routerLink]="[{outlets: {contentOutlet: 'inventaire'}}]"
+					*ngIf="hasRoleUser()" routerLinkActive="active">Inventaire</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link"
+					[routerLink]="[{outlets: {contentOutlet: 'utilisateurs'}}]"
+					*ngIf="hasRoleAdmin()" routerLinkActive="active">Utilisateurs</a>
+	    </li>
+	    <li class="nav-item">
+	        <a class="nav-link" href="#" (click)="logout()">D&eacute;connxion</a>
+	    </li>
+	  </ul>
+	</nav>
+</div>

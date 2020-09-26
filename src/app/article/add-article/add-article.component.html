@@ -1,0 +1,68 @@
+<div id="toolbar">
+	<div class="background">
+		<h3>Gestion Article</h3>
+	</div>
+</div>
+<div class="contenu">
+	<form [formGroup]="this.articleService.formData"
+		(ngSubmit)="onSubmit()">
+		<input type="hidden" formControlName="id" id="id">
+		<div class="form-group row col-md-12 formContenu">
+			<div class="form-group col-md-6">
+				<label><strong>Code Article </strong></label> <input type="text"
+					class="form-control" formControlName="code" id="code"
+					(keyup)="validateForm()">
+				<div
+					*ngIf="this.f['code'].invalid &&
+			(this.f['code'].dirty || this.f['code'].touched)"
+					class="alert alert-danger">Le code est obligatoire</div>
+			</div>
+
+			<div class="form-group col-md-6">
+				<label><strong>Code Barre </strong></label> <input type="text"
+					class="form-control" formControlName="codeBarre" id="codeBarre"
+					onkeypress="return (event.charCode > 47 && event.charCode < 58)"
+					(keyup)="validateForm()">
+			</div>
+			<div class="form-group col-md-6">
+				<label><strong>Libell&eacute; </strong></label> <input type="text"
+					class="form-control" formControlName="libelle" id="libelle">
+			</div>
+			<div class="form-group col-md-6">
+				<label><strong>Prix Achat </strong></label> <input type="text"
+					class="form-control" formControlName="pa" id="pa"
+					(keyup)="validateForm()">
+			</div>
+			<div class="form-group col-md-6">
+				<label><strong>Prix Vente </strong></label> <input type="text"
+					class="form-control" formControlName="pv" id="pv"
+					(keyup)="validateForm()">
+			</div>
+			<div class="form-group col-md-6">
+				<label><strong>Remise : </strong></label> <input name="remise"
+					class="form-control" formControlName="remise" id="remise"
+					(keyup)="validateForm()">
+			</div>
+			<div class="form-group col-md-6">
+				<label><strong>TVA </strong></label> <select class="form-control"
+					formControlName="tva" id="tva" (change)="validateForm()">
+					<option value=0>0</option>
+					<option value=7>7</option>
+					<option value=13>13</option>
+					<option value=18>18</option>
+				</select>
+			</div>
+			<div class="form-group col-md-6">
+				<label><strong>Stock Inititial </strong></label> <input type="text"
+					class="form-control" formControlName="stkinit" id="stkinit">
+			</div>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-dark" [disabled]="!isValid"> 
+				<i class="fa fa-database"></i> Enregistrer
+			</button>
+			<a class="btn btn-outline-success" (click)="goToListeArticles()"><i
+				class="fa fa-plus-square"></i> Liste</a>
+		</div>
+	</form>
+</div>

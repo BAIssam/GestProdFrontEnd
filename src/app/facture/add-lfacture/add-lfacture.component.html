@@ -1,0 +1,78 @@
+<h4 class="dislay-4">Facture Client</h4>
+<hr>
+
+<form [formGroup]="formData" (ngSubmit)="onSubmit()">
+
+	<input type="hidden" class="form-control" formControlName="id" id="id">
+	<input type="hidden" class="form-control" formControlName="libelle" id="libelle">
+  	<input type="hidden" class="form-control" formControlName="stock" id="stock">
+<!--	<input type="hidden" class="form-control" formControlName="totrem" id="totrem"> -->
+
+	<div class="form-group row col-md-12 formContenu">
+		<div class="form-group col-md-6">
+			<label>Article </label> <select class="form-control"
+				formControlName="code" id="code"
+				(change)="updatePrice($event.target)">
+				<option value="0" disabled selected>-Select-</option>
+				<option *ngFor="let item of articleList" value="{{item.code}}">{{item.libelle}}</option>
+			</select>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Code Barre </label>
+			<div class="input-group">
+				<input class="form-control" formControlName="codeBarre" id="codeBarre" readonly>
+			</div>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Prix Unitaire </label>
+			<div class="input-group">
+				<input class="form-control" formControlName="pv" id="pv" readonly>
+			</div>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Quantit&eacute;</label>
+			<div class="input-group">
+				<input name="qte" class="form-control" formControlName="qte"
+					id="qte" (keyup)="calcul()" (keyup)="verifierStock()"
+					[class.is-invalid]="(!isValid && formData.value.qte==0) || isDisabled">
+			</div>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Remise : </label>
+			<div class="input-group">
+				<input name="remise" class="form-control" formControlName="remise"
+					id="remise" (keyup)="calcul()">
+			</div>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Tva</label>
+			<div class="input-group">
+				<input class="form-control" formControlName="tva" id="tva" readonly>
+			</div>
+		</div>
+		<div class="form-group col-md-6">
+			<label>ToT HT </label>
+			<div class="input-group">
+				<input class="form-control" formControlName="totht" id="totht"
+					readonly>
+			</div>
+		</div>
+		<div class="form-group col-md-6">
+			<label>ToT TVA </label> <input class="form-control"
+				formControlName="tottva" id="tottva" readonly>
+		</div>
+		<div class="form-group col-md-6">
+			<label>ToT TTC </label> <input class="form-control"
+				formControlName="totttc" id="totttc" readonly>
+		</div>
+		<div class="form-group col-md-12">
+			<button type="submit" class="btn btn-dark" [disabled]="isDisabled">
+				<i class="fa fa-database"></i> Ajouter
+			</button>
+			<button type="button" class="btn btn-outline-dark ml-1"
+				[mat-dialog-close]>
+				<i class="fa fa-close"></i> Quitter
+			</button>
+		</div>
+	</div>
+</form>

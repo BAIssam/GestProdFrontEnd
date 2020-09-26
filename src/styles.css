@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+#toolbar .background{
+	padding: 20px;
+	background: #6d7fcc;
+}
+
+.contenu {
+	margin-left: 10px;
+}
+
+.formContenu {
+	margin-left: -30px !important;
+}
+
+.hidden {
+	display: none;
+}
